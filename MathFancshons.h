@@ -44,5 +44,8 @@ void DrawGrid(const Matrix4x4& viewProjectionMatrix, const Matrix4x4& viewportMa
 //球
 void DrawSphere(const Sphere& sphere, const Matrix4x4& viewProjectionMatrix, const Matrix4x4& viewportMatrix, uint32_t color);
 
+float Length(const Vector3& point1, const Vector3& point2);
+
+
 // 円（球）の衝突判定関数
 bool isColliding(const Sphere& c1, const Sphere& c2);

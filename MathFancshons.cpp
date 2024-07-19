@@ -320,21 +320,23 @@ void DrawSphere(const Sphere& sphere, const Matrix4x4& viewProjectionMatrix, con
 	}
 }
 
+float Length(const Vector3& point1, const Vector3& point2)
+{
+	Vector3 difference;
+	difference.x = point1.x - point2.x;
+	difference.y = point1.y - point2.y;
+	difference.z = point1.z - point2.z;
+
+	return sqrtf(difference.x * difference.x + difference.y * difference.y + difference.z * difference.z);
+}
+
 bool isColliding(const Sphere& c1, const Sphere& c2)
 {
-	float dx = c2.center.x - c1.center.x;
-	float dy = c2.center.y - c1.center.y;
-	float dz = c2.center.z - c1.center.z;
-	float distanceSquared = (dx * dx) + (dy * dy) + (dz * dz);
-
-	// 半径の和の二乗を計算
-	//float radiusSum = c1.radius + c2.radius;
-	//float radiusSumSquared = radiusSum * radiusSum;
-
-	// 衝突しているかどうかを判定
-	//return distanceSquared < radiusSum/*radiusSumSquared*/;
-
-	return distanceSquared;
+	float distance = Length(c1.center, c2.center);
+	if (distance <= c1.radius + c2.radius) {
+		return true;
+	}
+	return false;
 }
 
 

@@ -42,13 +42,13 @@ void Result::Draw()
 
 	DrawGrid(worldviewProjectionMatrix, viewportMatrix);
 	DrawSphere(sphere, worldviewProjectionMatrix, viewportMatrix, 0xAAAAAAFF);
-	if (distance >= sphere.radius + sphere2.radius)
+	if (isColliding(sphere, sphere2))
+	{
+		DrawSphere(sphere2, worldviewProjectionMatrix, viewportMatrix, RED);
+	}
+	else
 	{
 		DrawSphere(sphere2, worldviewProjectionMatrix, viewportMatrix, 0xAAAAAAFF);
-	}
-	else if (distance <= sphere.radius + sphere2.radius)
-	{
-		DrawSphere(sphere2, worldviewProjectionMatrix, viewportMatrix, 0xAA0000FF);
 	}
 
 	/*if (distance)
